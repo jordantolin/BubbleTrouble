@@ -1,0 +1,20 @@
+Crea un design UI/UX per l’app “Bubble Trouble” che esalti una palette prevalentemente gialla e un’estetica fatta interamente di bolle. Il design deve includere anche immagini illustrative e di supporto nelle sezioni in cui possano migliorare l’esperienza utente.
+
+Indicazioni chiave:
+ • Palette di Colori:
+Utilizza diverse sfumature di giallo per evocare calore, energia positiva e leggerezza. Integra gradazioni che diano profondità e dinamicità al design, mantenendo sempre una sensazione di luminosità e accoglienza.
+ • Elementi a Bolle:
+Progetta l’interfaccia con forme arrotondate e morbide, ispirate a bolle leggere e trasparenti. Usa bordi arrotondati per pulsanti, icone e card, e integra animazioni fluide che riproducano il movimento naturale delle bolle.
+ • Stile Minimalista e Moderno:
+Mantieni un layout pulito e ordinato, privilegiando la semplicità per garantire un’esperienza utente intuitiva. L’interfaccia deve essere moderna, con un design minimalista che focalizzi l’attenzione sui contenuti effimeri e le interazioni genuine.
+ • Tipografia:
+Scegli caratteri tipografici morbidi e arrotondati che si armonizzino con l’estetica a bolle, garantendo una leggibilità ottimale e una coerenza stilistica in tutto il design.
+ • Esperienza Dinamica:
+Integra elementi interattivi e animazioni che richiamino il movimento e la fuggevolezza delle bolle. Queste animazioni dovrebbero trasmettere l’idea di post effimeri e interazioni spontanee.
+ • Inserimento di Immagini:
+Includi immagini illustrative e di supporto nei punti strategici dell’interfaccia, ad esempio:
+ • Header e Background: Utilizza immagini di texture o pattern che richiamino l’effetto delle bolle e sfumature di giallo per enfatizzare l’identità visiva.
+ • Sezioni Promozionali o Informative: Aggiungi immagini esplicative che illustrino le funzionalità principali dell’app, come la creazione delle “bolle” o il concetto dei post effimeri.
+ • Iconografia e Elementi Interattivi: Inserisci icone e piccole illustrazioni che richiamino il tema bubble, rafforzando la coerenza visiva e rendendo l’esperienza più coinvolgente.
+ • Dettagli e Finiture:
+Aggiungi effetti di luce e ombra delicati per dare rilievo agli elementi a bolle, creando un design tridimensionale e dinamico senza appesantire l’interfaccia. Le immagini devono integrarsi armoniosamente con gli elementi grafici, enfatizzando la sensazione di freschezza e movimento.
