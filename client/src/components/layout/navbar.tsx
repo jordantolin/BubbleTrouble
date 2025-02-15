@@ -44,7 +44,7 @@ export function Navbar() {
             </>
           ) : (
             <Link href="/auth">
-              <Button className="bubble-button px-6 py-2">
+              <Button className="bubble-button">
                 Sign In
               </Button>
             </Link>

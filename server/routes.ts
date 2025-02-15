@@ -4,6 +4,7 @@ import { WebSocket, WebSocketServer } from "ws";
 import { setupAuth } from "./auth";
 import { storage } from "./storage";
 import { insertBubbleSchema, insertCommentSchema } from "@shared/schema";
+import { handleWebSocket } from "./websocket";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   setupAuth(app);
@@ -11,16 +12,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
   const httpServer = createServer(app);
   const wss = new WebSocketServer({ server: httpServer, path: "/ws" });
 
-  wss.on("connection", (ws) => {
+  // Store WSS globally for broadcasting
+  (global as any).wss = wss;
+
+  wss.on("connection", (ws, request) => {
     console.log("WebSocket client connected");
-
-    ws.on("error", (error) => {
-      console.error("WebSocket error:", error);
-    });
-
-    ws.on("close", () => {
-      console.log("WebSocket client disconnected");
-    });
+    handleWebSocket(ws, request);
   });
 
   // Bubble routes
@@ -90,6 +87,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/bubbles/:id/comments", async (req, res) => {
     const comments = await storage.getBubbleComments(parseInt(req.params.id));
     res.json(comments);
+  });
+
+  // User bubbles route
+  app.get("/api/users/:id/bubbles", async (req, res) => {
+    if (!req.user) return res.sendStatus(401);
+    const bubbles = await storage.getUserBubbles(parseInt(req.params.id));
+    res.json(bubbles);
   });
 
   return httpServer;
