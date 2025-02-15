@@ -14,9 +14,9 @@ export default function AuthPage() {
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-8">
           <img 
-            src="/bubbletroublelogo-3-removebg-preview.png" 
+            src="/bubble-removebg-preview.png" 
             alt="Bubble Trouble" 
-            className="h-20 mx-auto mb-6 float-animation"
+            className="h-24 mx-auto mb-6 float-animation hover:scale-110 transition-transform"
           />
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Welcome to Bubble Trouble

@@ -11,9 +11,9 @@ export function Navbar() {
         <Link href="/">
           <div className="flex items-center space-x-2 cursor-pointer">
             <img
-              src="/bubbletroublelogo-3-removebg-preview.png"
+              src="/bubble-removebg-preview.png"
               alt="Bubble Trouble"
-              className="h-8 w-8"
+              className="h-8 w-8 hover:scale-110 transition-transform"
             />
             <span className="text-xl font-bold text-gray-900">Bubble Trouble</span>
           </div>
