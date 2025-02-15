@@ -12,7 +12,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Card, CardContent } from "@/components/ui/card";
 import { Loader2 } from "lucide-react";
 
 export function LoginForm() {
@@ -28,50 +27,46 @@ export function LoginForm() {
   });
 
   return (
-    <Card className="border-gray-100">
-      <CardContent className="pt-6">
-        <Form {...form}>
-          <form onSubmit={onSubmit} className="space-y-4">
-            <FormField
-              control={form.control}
-              name="username"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Username</FormLabel>
-                  <FormControl>
-                    <Input {...field} className="bubble-input" />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input type="password" {...field} className="bubble-input" />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button 
-              type="submit" 
-              className="bubble-button w-full" 
-              disabled={loginMutation.isPending}
-            >
-              {loginMutation.isPending ? (
-                <Loader2 className="h-4 w-4 animate-spin mr-2" />
-              ) : null}
-              Sign In
-            </Button>
-          </form>
-        </Form>
-      </CardContent>
-    </Card>
+    <Form {...form}>
+      <form onSubmit={onSubmit} className="space-y-4">
+        <FormField
+          control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Username</FormLabel>
+              <FormControl>
+                <Input {...field} className="bubble-input" />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Password</FormLabel>
+              <FormControl>
+                <Input type="password" {...field} className="bubble-input" />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button 
+          type="submit" 
+          className="bubble-button w-full" 
+          disabled={loginMutation.isPending}
+        >
+          {loginMutation.isPending ? (
+            <Loader2 className="h-4 w-4 animate-spin mr-2" />
+          ) : null}
+          Sign In
+        </Button>
+      </form>
+    </Form>
   );
 }
 
@@ -86,62 +81,58 @@ export function RegisterForm() {
   });
 
   return (
-    <Card className="border-gray-100">
-      <CardContent className="pt-6">
-        <Form {...form}>
-          <form onSubmit={onSubmit} className="space-y-4">
-            <FormField
-              control={form.control}
-              name="username"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Username</FormLabel>
-                  <FormControl>
-                    <Input {...field} className="bubble-input" />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input type="password" {...field} className="bubble-input" />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="displayName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Display Name</FormLabel>
-                  <FormControl>
-                    <Input {...field} className="bubble-input" />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button 
-              type="submit" 
-              className="bubble-button w-full"
-              disabled={registerMutation.isPending}
-            >
-              {registerMutation.isPending ? (
-                <Loader2 className="h-4 w-4 animate-spin mr-2" />
-              ) : null}
-              Create Account
-            </Button>
-          </form>
-        </Form>
-      </CardContent>
-    </Card>
+    <Form {...form}>
+      <form onSubmit={onSubmit} className="space-y-4">
+        <FormField
+          control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Username</FormLabel>
+              <FormControl>
+                <Input {...field} className="bubble-input" />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Password</FormLabel>
+              <FormControl>
+                <Input type="password" {...field} className="bubble-input" />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="displayName"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Display Name</FormLabel>
+              <FormControl>
+                <Input {...field} className="bubble-input" />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button 
+          type="submit" 
+          className="bubble-button w-full"
+          disabled={registerMutation.isPending}
+        >
+          {registerMutation.isPending ? (
+            <Loader2 className="h-4 w-4 animate-spin mr-2" />
+          ) : null}
+          Create Account
+        </Button>
+      </form>
+    </Form>
   );
 }

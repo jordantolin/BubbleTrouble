@@ -1,6 +1,7 @@
 import { useAuth } from "@/hooks/use-auth";
 import { Redirect } from "wouter";
 import { LoginForm, RegisterForm } from "@/components/auth/auth-forms";
+import { MessageCircle, Users, Clock } from "lucide-react";
 
 export default function AuthPage() {
   const { user } = useAuth();
@@ -12,11 +13,11 @@ export default function AuthPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-yellow-50">
       <div className="container mx-auto px-4 py-8">
-        <div className="text-center mb-8">
+        <div className="text-center mb-12">
           <img 
             src="/bubble-removebg-preview.png" 
             alt="Bubble Trouble" 
-            className="h-24 mx-auto mb-6 float-animation hover:scale-110 transition-transform"
+            className="h-32 mx-auto mb-8 float-animation"
           />
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Welcome to Bubble Trouble
@@ -27,35 +28,52 @@ export default function AuthPage() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          <div className="space-y-6">
-            <div className="text-left">
-              <h2 className="text-2xl font-semibold mb-2">Sign In</h2>
-              <p className="text-gray-600">
-                Welcome back! Continue your journey with Bubble Trouble.
-              </p>
-            </div>
+        {/* Features Section */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
+          <div className="text-center">
+            <MessageCircle className="feature-icon" />
+            <h3 className="feature-title">Ephemeral Chats</h3>
+            <p className="feature-description">
+              Share thoughts that float away like bubbles in the wind
+            </p>
+          </div>
+          <div className="text-center">
+            <Users className="feature-icon" />
+            <h3 className="feature-title">Real Connections</h3>
+            <p className="feature-description">
+              Connect with like-minded individuals in a unique way
+            </p>
+          </div>
+          <div className="text-center">
+            <Clock className="feature-icon" />
+            <h3 className="feature-title">Bubble Points</h3>
+            <p className="feature-description">
+              Earn points as your bubbles gain attention
+            </p>
+          </div>
+        </div>
+
+        {/* Auth Forms */}
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="auth-form">
+            <h2 className="text-2xl font-semibold mb-6">Sign In</h2>
             <LoginForm />
           </div>
 
-          <div className="space-y-6">
-            <div className="text-left">
-              <h2 className="text-2xl font-semibold mb-2">Create Account</h2>
-              <p className="text-gray-600">
-                New to Bubble Trouble? Join our community today!
-              </p>
-            </div>
+          <div className="auth-form">
+            <h2 className="text-2xl font-semibold mb-6">Create Account</h2>
             <RegisterForm />
           </div>
         </div>
 
-        <div className="mt-12 text-center text-sm text-gray-500">
+        <footer className="mt-12 text-center text-sm text-gray-500">
           <div className="flex justify-center space-x-4">
-            <a href="#" className="hover:text-primary">Privacy Policy</a>
+            <a href="#" className="hover:text-yellow-600 transition-colors">Privacy Policy</a>
             <span>•</span>
-            <a href="#" className="hover:text-primary">Terms of Service</a>
+            <a href="#" className="hover:text-yellow-600 transition-colors">Terms of Service</a>
           </div>
-        </div>
+          <p className="mt-4">&copy; 2025 Bubble Trouble. All rights reserved.</p>
+        </footer>
       </div>
     </div>
   );

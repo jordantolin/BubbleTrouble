@@ -4,20 +4,38 @@
 }
 
 .bubble-button {
-  @apply bg-primary hover:bg-primary/90 text-black font-medium rounded-full transition-colors;
+  @apply bg-yellow-400 hover:bg-yellow-500 text-black font-medium rounded-full transition-colors;
 }
 
 .bubble-input {
-  @apply rounded-xl border-gray-200 focus:ring-primary focus:border-primary;
+  @apply rounded-xl border-gray-200 focus:ring-yellow-400 focus:border-yellow-400 bg-white/80;
 }
 
 .bubble-card {
-  @apply bg-white rounded-2xl shadow-sm border border-gray-100 hover:border-primary/20 transition-colors;
+  @apply bg-white rounded-2xl shadow-sm border border-gray-100 hover:border-yellow-400/20 transition-colors;
 }
 
 .bubble-gradient {
   background: radial-gradient(circle at top right, #fef9c3, transparent),
               radial-gradient(circle at bottom left, #fef9c3, transparent);
+}
+
+/* Feature section */
+.feature-icon {
+  @apply w-12 h-12 mx-auto mb-4 text-yellow-400;
+}
+
+.feature-title {
+  @apply text-lg font-semibold mb-2 text-gray-900;
+}
+
+.feature-description {
+  @apply text-sm text-gray-600;
+}
+
+/* Auth forms */
+.auth-form {
+  @apply bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-100 p-6;
 }
 
 /* Floating animation for bubbles */
