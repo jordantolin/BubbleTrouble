@@ -9,31 +9,36 @@ export function Navbar() {
     <nav className="bubble-nav px-4 py-3">
       <div className="container mx-auto flex items-center justify-between">
         <Link href="/">
-          <a className="flex items-center space-x-2">
-            <img src="/logo.svg" alt="Bubble Trouble" className="h-8 w-8" />
-            <span className="text-xl font-bold">Bubble Trouble</span>
-          </a>
+          <div className="flex items-center space-x-2 cursor-pointer">
+            <img
+              src="/bubbletroublelogo-3-removebg-preview.png"
+              alt="Bubble Trouble"
+              className="h-8 w-8"
+            />
+            <span className="text-xl font-bold text-gray-900">Bubble Trouble</span>
+          </div>
         </Link>
 
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-6">
           {user ? (
             <>
               <Link href="/profile">
-                <a className="text-sm hover:text-primary transition-colors">
+                <a className="text-gray-600 hover:text-primary transition-colors">
                   Profile
                 </a>
               </Link>
               <Button
                 variant="ghost"
                 onClick={() => logoutMutation.mutate()}
-                className="text-sm"
+                className="text-gray-600 hover:text-primary transition-colors"
+                disabled={logoutMutation.isPending}
               >
                 Logout
               </Button>
             </>
           ) : (
             <Link href="/auth">
-              <a className="bubble-button text-sm">Login</a>
+              <a className="bubble-button px-6 py-2">Sign In</a>
             </Link>
           )}
         </div>

@@ -12,12 +12,15 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
+import { Loader2 } from "lucide-react";
 
 export function LoginForm() {
   const { loginMutation } = useAuth();
   const form = useForm({
-    resolver: zodResolver(insertUserSchema.pick({ username: true, password: true })),
+    resolver: zodResolver(
+      insertUserSchema.pick({ username: true, password: true })
+    ),
   });
 
   const onSubmit = form.handleSubmit((data) => {
@@ -25,11 +28,8 @@ export function LoginForm() {
   });
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Login</CardTitle>
-      </CardHeader>
-      <CardContent>
+    <Card className="border-gray-100">
+      <CardContent className="pt-6">
         <Form {...form}>
           <form onSubmit={onSubmit} className="space-y-4">
             <FormField
@@ -58,8 +58,15 @@ export function LoginForm() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="bubble-button w-full">
-              Login
+            <Button 
+              type="submit" 
+              className="bubble-button w-full" 
+              disabled={loginMutation.isPending}
+            >
+              {loginMutation.isPending ? (
+                <Loader2 className="h-4 w-4 animate-spin mr-2" />
+              ) : null}
+              Sign In
             </Button>
           </form>
         </Form>
@@ -79,11 +86,8 @@ export function RegisterForm() {
   });
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Register</CardTitle>
-      </CardHeader>
-      <CardContent>
+    <Card className="border-gray-100">
+      <CardContent className="pt-6">
         <Form {...form}>
           <form onSubmit={onSubmit} className="space-y-4">
             <FormField
@@ -125,8 +129,15 @@ export function RegisterForm() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="bubble-button w-full">
-              Register
+            <Button 
+              type="submit" 
+              className="bubble-button w-full"
+              disabled={registerMutation.isPending}
+            >
+              {registerMutation.isPending ? (
+                <Loader2 className="h-4 w-4 animate-spin mr-2" />
+              ) : null}
+              Create Account
             </Button>
           </form>
         </Form>

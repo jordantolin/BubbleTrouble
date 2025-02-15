@@ -1,0 +1,32 @@
+/* Bubble Theme CSS */
+.bubble-nav {
+  @apply bg-white/80 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50;
+}
+
+.bubble-button {
+  @apply bg-primary hover:bg-primary/90 text-black font-medium rounded-full transition-colors;
+}
+
+.bubble-input {
+  @apply rounded-xl border-gray-200 focus:ring-primary focus:border-primary;
+}
+
+.bubble-card {
+  @apply bg-white rounded-2xl shadow-sm border border-gray-100 hover:border-primary/20 transition-colors;
+}
+
+.bubble-gradient {
+  background: radial-gradient(circle at top right, #fef9c3, transparent),
+              radial-gradient(circle at bottom left, #fef9c3, transparent);
+}
+
+/* Floating animation for bubbles */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
