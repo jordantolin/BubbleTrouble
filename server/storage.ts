@@ -1,11 +1,8 @@
-import { User, InsertUser, Bubble, InsertBubble, Comment, InsertComment, BubbleWithUser, users, bubbles, comments } from "@shared/schema";
-import { db } from "./db";
-import { eq } from "drizzle-orm";
+import { User, InsertUser, Bubble, InsertBubble, Comment, InsertComment, BubbleWithUser } from "@shared/schema";
 import session from "express-session";
-import connectPg from "connect-pg-simple";
-import { pool } from "./db";
+import createMemoryStore from "memorystore";
 
-const PostgresSessionStore = connectPg(session);
+const MemoryStore = createMemoryStore(session);
 
 export interface IStorage {
   sessionStore: session.Store;
@@ -28,120 +25,136 @@ export interface IStorage {
   getBubbleComments(bubbleId: number): Promise<Comment[]>;
 }
 
-export class DatabaseStorage implements IStorage {
+export class MemStorage implements IStorage {
   sessionStore: session.Store;
+  private users: Map<number, User>;
+  private bubbles: Map<number, Bubble>;
+  private comments: Map<number, Comment>;
+  private currentId: { user: number; bubble: number; comment: number };
 
   constructor() {
-    this.sessionStore = new PostgresSessionStore({ 
-      pool,
-      createTableIfMissing: true,
-    });
+    this.sessionStore = new MemoryStore({ checkPeriod: 86400000 });
+    this.users = new Map();
+    this.bubbles = new Map();
+    this.comments = new Map();
+    this.currentId = { user: 1, bubble: 1, comment: 1 };
   }
 
   async getUser(id: number): Promise<User | undefined> {
-    const [user] = await db.select().from(users).where(eq(users.id, id));
-    return user;
+    return this.users.get(id);
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    const [user] = await db.select().from(users).where(eq(users.username, username));
-    return user;
+    return Array.from(this.users.values()).find(
+      (user) => user.username === username
+    );
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const [user] = await db.insert(users).values(insertUser).returning();
+    const id = this.currentId.user++;
+    const user: User = {
+      id,
+      ...insertUser,
+      displayName: insertUser.displayName ?? null,
+      bio: insertUser.bio ?? null,
+      avatarUrl: insertUser.avatarUrl ?? null,
+    };
+    this.users.set(id, user);
     return user;
   }
 
   async updateUser(id: number, data: Partial<User>): Promise<User> {
-    const [user] = await db
-      .update(users)
-      .set(data)
-      .where(eq(users.id, id))
-      .returning();
+    const user = await this.getUser(id);
     if (!user) throw new Error("User not found");
-    return user;
+    const updatedUser = { ...user, ...data };
+    this.users.set(id, updatedUser);
+    return updatedUser;
   }
 
   async createBubble(insertBubble: InsertBubble): Promise<Bubble> {
-    const [bubble] = await db
-      .insert(bubbles)
-      .values({ ...insertBubble, createdAt: new Date() })
-      .returning();
+    const id = this.currentId.bubble++;
+    const bubble: Bubble = {
+      id,
+      ...insertBubble,
+      createdAt: new Date(),
+      likes: 0,
+    };
+    this.bubbles.set(id, bubble);
     return bubble;
   }
 
   async getBubble(id: number): Promise<BubbleWithUser | undefined> {
-    const [result] = await db
-      .select({
-        ...bubbles,
-        user: {
-          username: users.username,
-          displayName: users.displayName,
-          avatarUrl: users.avatarUrl,
-        },
-      })
-      .from(bubbles)
-      .where(eq(bubbles.id, id))
-      .leftJoin(users, eq(bubbles.userId, users.id));
-
-    if (!result) return undefined;
-
-    const { user, ...bubble } = result;
-    return { ...bubble, user };
+    const bubble = this.bubbles.get(id);
+    if (!bubble) return undefined;
+    const user = await this.getUser(bubble.userId);
+    if (!user) return undefined;
+    return {
+      ...bubble,
+      user: {
+        username: user.username,
+        displayName: user.displayName,
+        avatarUrl: user.avatarUrl,
+      },
+    };
   }
 
   async getBubbles(): Promise<BubbleWithUser[]> {
-    const results = await db
-      .select({
-        ...bubbles,
-        user: {
-          username: users.username,
-          displayName: users.displayName,
-          avatarUrl: users.avatarUrl,
-        },
+    const bubbles = Array.from(this.bubbles.values());
+    return Promise.all(
+      bubbles.map(async (bubble) => {
+        const user = await this.getUser(bubble.userId);
+        if (!user) throw new Error("User not found");
+        return {
+          ...bubble,
+          user: {
+            username: user.username,
+            displayName: user.displayName,
+            avatarUrl: user.avatarUrl,
+          },
+        };
       })
-      .from(bubbles)
-      .leftJoin(users, eq(bubbles.userId, users.id));
-
-    return results.map(({ user, ...bubble }) => ({ ...bubble, user }));
+    );
   }
 
   async getUserBubbles(userId: number): Promise<BubbleWithUser[]> {
-    const results = await db
-      .select({
-        ...bubbles,
-        user: {
-          username: users.username,
-          displayName: users.displayName,
-          avatarUrl: users.avatarUrl,
-        },
-      })
-      .from(bubbles)
-      .where(eq(bubbles.userId, userId))
-      .leftJoin(users, eq(bubbles.userId, users.id));
-
-    return results.map(({ user, ...bubble }) => ({ ...bubble, user }));
+    const bubbles = Array.from(this.bubbles.values()).filter(
+      (bubble) => bubble.userId === userId
+    );
+    const user = await this.getUser(userId);
+    if (!user) return [];
+    return bubbles.map((bubble) => ({
+      ...bubble,
+      user: {
+        username: user.username,
+        displayName: user.displayName,
+        avatarUrl: user.avatarUrl,
+      },
+    }));
   }
 
   async likeBubble(id: number): Promise<void> {
-    await db
-      .update(bubbles)
-      .set((bubble) => ({ likes: bubble.likes + 1 }))
-      .where(eq(bubbles.id, id));
+    const bubble = this.bubbles.get(id);
+    if (!bubble) throw new Error("Bubble not found");
+    bubble.likes = (bubble.likes || 0) + 1;
+    this.bubbles.set(id, bubble);
   }
 
   async createComment(insertComment: InsertComment): Promise<Comment> {
-    const [comment] = await db
-      .insert(comments)
-      .values({ ...insertComment, createdAt: new Date() })
-      .returning();
+    const id = this.currentId.comment++;
+    const comment: Comment = {
+      id,
+      ...insertComment,
+      createdAt: new Date(),
+    };
+    this.comments.set(id, comment);
     return comment;
   }
 
   async getBubbleComments(bubbleId: number): Promise<Comment[]> {
-    return db.select().from(comments).where(eq(comments.bubbleId, bubbleId));
+    return Array.from(this.comments.values()).filter(
+      (comment) => comment.bubbleId === bubbleId
+    );
   }
 }
 
-export const storage = new DatabaseStorage();
+export const storage = new MemStorage();
