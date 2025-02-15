@@ -7,7 +7,7 @@ export function Navbar() {
   const [location] = useLocation();
 
   return (
-    <nav className="bubble-nav px-4 py-3">
+    <nav className="bubble-nav px-4 py-2 mb-2">
       <div className="container mx-auto flex items-center justify-between">
         <Link href="/">
           <div className="flex items-center space-x-2 cursor-pointer">
@@ -16,7 +16,7 @@ export function Navbar() {
               alt="Bubble Trouble"
               className="h-8 w-8 hover:scale-110 transition-transform"
             />
-            <span className="text-xl font-bold text-gray-900">Bubble Trouble</span>
+            <span className="text-xl font-bold nav-brand">Bubble Trouble</span>
           </div>
         </Link>
 

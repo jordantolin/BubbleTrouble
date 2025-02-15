@@ -4,6 +4,10 @@
          bg-gradient-to-b from-yellow-50/50 to-transparent;
 }
 
+.nav-brand {
+  @apply text-yellow-500 hover:text-yellow-600 transition-colors;
+}
+
 .bubble-button {
   @apply bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 
          text-black font-semibold rounded-full transition-all shadow-md hover:shadow-lg px-8 py-3
@@ -26,9 +30,8 @@
 .feature-box {
   @apply relative overflow-hidden rounded-3xl p-8 transition-all duration-300
          bg-gradient-to-br from-yellow-100/50 via-white to-yellow-50
-         hover:shadow-xl hover:scale-105 
-         border-2 border-yellow-200 hover:border-yellow-300
-         hover:bg-gradient-to-br hover:from-yellow-200/50 hover:via-white hover:to-yellow-100/50;
+         hover:shadow-xl hover:scale-105 transform
+         border-2 border-yellow-200 hover:border-yellow-300;
 }
 
 .feature-box::before {
@@ -41,8 +44,22 @@
   @apply opacity-100;
 }
 
+.feature-content {
+  @apply relative z-10 animate-float;
+}
+
+.feature-box::after {
+  content: '';
+  @apply absolute -inset-1 rounded-3xl bg-gradient-to-r from-yellow-200 via-yellow-300 to-yellow-200
+         opacity-0 transition-opacity duration-500 -z-10;
+}
+
+.feature-box:hover::after {
+  @apply opacity-30;
+}
+
 .feature-icon {
-  @apply w-16 h-16 mx-auto mb-6 text-yellow-500 relative z-10
+  @apply w-16 h-16 mx-auto mb-6 text-yellow-500
          transform transition-all duration-300
          drop-shadow-lg;
 }
@@ -52,45 +69,38 @@
 }
 
 .feature-title {
-  @apply text-xl font-bold mb-4 text-yellow-900 relative z-10
+  @apply text-xl font-bold mb-4 text-yellow-900
          tracking-tight;
 }
 
 .feature-description {
-  @apply text-base text-yellow-800 relative z-10 leading-relaxed;
+  @apply text-base text-yellow-800 leading-relaxed;
 }
 
 /* Auth forms */
 .auth-container {
   @apply bg-gradient-to-br from-yellow-50 via-white to-yellow-50 backdrop-blur-sm 
          rounded-[40px] shadow-2xl border-2 border-yellow-200
-         p-8 max-w-md mx-auto relative overflow-hidden
+         p-8 max-w-md mx-auto relative overflow-hidden mt-8
          hover:border-yellow-300 transition-all;
 }
 
-.auth-container::before {
-  content: '';
-  @apply absolute inset-0 bg-gradient-to-br from-yellow-200/20 to-yellow-100/30 opacity-0 
-         transition-opacity duration-300 -z-10;
+.auth-tabs {
+  @apply flex justify-center mb-8 relative;
 }
 
-.auth-container:hover::before {
-  @apply opacity-100;
+.auth-tab-box {
+  @apply absolute top-0 h-full transition-all duration-300 rounded-full
+         bg-gradient-to-r from-yellow-100 to-yellow-50 border border-yellow-200;
 }
 
 .auth-tab {
-  @apply px-6 py-3 text-lg font-medium transition-all relative
+  @apply px-8 py-3 text-lg font-medium transition-all relative z-10
          text-yellow-700 hover:text-yellow-900;
 }
 
 .auth-tab[data-state="active"] {
   @apply text-yellow-900 font-semibold;
-}
-
-.auth-tab[data-state="active"]::after {
-  content: '';
-  @apply absolute bottom-0 left-0 right-0 h-0.5 bg-yellow-400
-         transform transition-transform;
 }
 
 /* Animations */
@@ -102,6 +112,16 @@
 
 .float-animation {
   animation: float 4s ease-in-out infinite;
+}
+
+@keyframes pulse-border {
+  0% { border-color: rgba(253, 224, 71, 0.2); }
+  50% { border-color: rgba(253, 224, 71, 0.8); }
+  100% { border-color: rgba(253, 224, 71, 0.2); }
+}
+
+.pulse-border {
+  animation: pulse-border 2s ease-in-out infinite;
 }
 
 /* Background elements */
