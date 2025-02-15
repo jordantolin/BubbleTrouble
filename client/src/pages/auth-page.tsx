@@ -14,12 +14,18 @@ export default function AuthPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-yellow-50 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-yellow-100 via-white to-yellow-50 relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="bg-blur">
-        <div className="bg-bubble animate-pulse" style={{ top: '10%', left: '15%' }} />
-        <div className="bg-bubble animate-pulse delay-300" style={{ bottom: '15%', right: '10%' }} />
+        <div className="bg-bubble" style={{ top: '10%', left: '15%', transform: 'scale(1.2)' }} />
+        <div className="bg-bubble" style={{ bottom: '15%', right: '10%', transform: 'scale(0.8)' }} />
       </div>
+
+      {/* Decorative bubbles */}
+      <div className="bubble-decoration w-20 h-20" style={{ top: '25%', left: '5%' }} />
+      <div className="bubble-decoration w-16 h-16" style={{ top: '15%', right: '20%' }} />
+      <div className="bubble-decoration w-24 h-24" style={{ bottom: '20%', left: '20%' }} />
+      <div className="bubble-decoration w-12 h-12" style={{ bottom: '30%', right: '15%' }} />
 
       <div className="container mx-auto px-4 py-12 relative z-10">
         <div className="text-center mb-16">
@@ -30,10 +36,10 @@ export default function AuthPage() {
               className="w-full h-full object-contain float-animation"
             />
           </div>
-          <h1 className="text-5xl font-bold text-gray-900 mb-6 tracking-tight">
+          <h1 className="text-5xl font-bold text-yellow-900 mb-6 tracking-tight">
             Welcome to Bubble Trouble
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-yellow-800 max-w-2xl mx-auto leading-relaxed">
             Join our unique social space where messages float like bubbles and
             conversations spark meaningful connections.
           </p>
@@ -66,7 +72,7 @@ export default function AuthPage() {
 
         {/* Auth Container */}
         <div className="auth-container">
-          <div className="flex justify-center mb-8 border-b">
+          <div className="flex justify-center mb-8 border-b border-yellow-200">
             <button
               onClick={() => setActiveTab('login')}
               className={cn(
@@ -94,11 +100,11 @@ export default function AuthPage() {
           </div>
         </div>
 
-        <footer className="mt-20 text-center text-sm text-gray-500">
+        <footer className="mt-20 text-center text-sm text-yellow-700">
           <div className="flex justify-center space-x-4">
-            <a href="#" className="hover:text-yellow-600 transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-yellow-900 transition-colors">Privacy Policy</a>
             <span>•</span>
-            <a href="#" className="hover:text-yellow-600 transition-colors">Terms of Service</a>
+            <a href="#" className="hover:text-yellow-900 transition-colors">Terms of Service</a>
           </div>
           <p className="mt-4">&copy; 2025 Bubble Trouble. All rights reserved.</p>
         </footer>

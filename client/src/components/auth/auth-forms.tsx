@@ -49,13 +49,13 @@ export function LoginForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={onSubmit} className="space-y-4">
+      <form onSubmit={onSubmit} className="space-y-6">
         <FormField
           control={form.control}
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel className="text-yellow-900">Username</FormLabel>
               <FormControl>
                 <Input 
                   type="text" 
@@ -64,7 +64,7 @@ export function LoginForm() {
                   {...field} 
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage className="text-yellow-700" />
             </FormItem>
           )}
         />
@@ -73,7 +73,7 @@ export function LoginForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel className="text-yellow-900">Password</FormLabel>
               <FormControl>
                 <Input 
                   type="password" 
@@ -82,7 +82,7 @@ export function LoginForm() {
                   {...field} 
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage className="text-yellow-700" />
             </FormItem>
           )}
         />
@@ -120,13 +120,13 @@ export function RegisterForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={onSubmit} className="space-y-4">
+      <form onSubmit={onSubmit} className="space-y-6">
         <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel className="text-yellow-900">Email</FormLabel>
               <FormControl>
                 <Input 
                   type="email" 
@@ -135,7 +135,7 @@ export function RegisterForm() {
                   {...field} 
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage className="text-yellow-700" />
             </FormItem>
           )}
         />
@@ -144,7 +144,7 @@ export function RegisterForm() {
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel className="text-yellow-900">Username</FormLabel>
               <FormControl>
                 <Input 
                   type="text" 
@@ -153,7 +153,7 @@ export function RegisterForm() {
                   {...field} 
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage className="text-yellow-700" />
             </FormItem>
           )}
         />
@@ -162,7 +162,7 @@ export function RegisterForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel className="text-yellow-900">Password</FormLabel>
               <FormControl>
                 <Input 
                   type="password" 
@@ -171,7 +171,7 @@ export function RegisterForm() {
                   {...field} 
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage className="text-yellow-700" />
             </FormItem>
           )}
         />
@@ -180,7 +180,7 @@ export function RegisterForm() {
           name="confirmPassword"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Confirm Password</FormLabel>
+              <FormLabel className="text-yellow-900">Confirm Password</FormLabel>
               <FormControl>
                 <Input 
                   type="password" 
@@ -189,7 +189,7 @@ export function RegisterForm() {
                   {...field} 
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage className="text-yellow-700" />
             </FormItem>
           )}
         />
