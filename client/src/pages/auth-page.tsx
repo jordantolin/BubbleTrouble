@@ -72,7 +72,7 @@ export default function AuthPage() {
 
         {/* Auth Container */}
         <div className="auth-container">
-          <div className="auth-tabs flex justify-center space-x-4 mb-8">
+          <div className="auth-tabs">
             <button
               onClick={() => setActiveTab('login')}
               className={`auth-tab-button ${activeTab === 'login' ? 'active' : ''}`}
