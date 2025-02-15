@@ -26,6 +26,8 @@ export function BubbleCard({ bubble }: BubbleCardProps) {
     }
   };
 
+  const avatarFallback = bubble.user.displayName?.[0] || bubble.user.username[0];
+
   return (
     <motion.div
       initial={{ scale: 0.9, opacity: 0 }}
@@ -34,15 +36,19 @@ export function BubbleCard({ bubble }: BubbleCardProps) {
     >
       <div className="flex items-start space-x-3">
         <Avatar>
-          <AvatarImage src={bubble.user.avatarUrl} />
-          <AvatarFallback>{bubble.user.displayName?.[0]}</AvatarFallback>
+          {bubble.user.avatarUrl && (
+            <AvatarImage src={bubble.user.avatarUrl} alt={bubble.user.username} />
+          )}
+          <AvatarFallback>{avatarFallback.toUpperCase()}</AvatarFallback>
         </Avatar>
         <div className="flex-1">
           <div className="flex items-center space-x-2">
-            <span className="font-medium">{bubble.user.displayName}</span>
+            <span className="font-medium">
+              {bubble.user.displayName || bubble.user.username}
+            </span>
             <span className="text-sm text-gray-500">@{bubble.user.username}</span>
           </div>
-          <p className="mt-2">{bubble.content}</p>
+          <p className="mt-2 text-gray-900">{bubble.content}</p>
           <div className="mt-3 flex items-center space-x-4">
             <Button
               variant="ghost"

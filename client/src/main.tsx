@@ -7,6 +7,13 @@ import "./index.css";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
+      queryFn: async ({ queryKey }) => {
+        const res = await fetch(queryKey[0] as string, {
+          credentials: "include",
+        });
+        if (!res.ok) throw new Error(res.statusText);
+        return res.json();
+      },
       refetchOnWindowFocus: false,
       retry: 1,
       staleTime: 5 * 60 * 1000,

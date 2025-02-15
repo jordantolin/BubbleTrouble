@@ -12,24 +12,24 @@ export default function AuthPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-yellow-50">
-      <div className="container mx-auto px-4 py-8">
-        <div className="text-center mb-12">
+      <div className="container mx-auto px-4 py-12">
+        <div className="text-center mb-16">
           <img 
             src="/bubble-removebg-preview.png" 
             alt="Bubble Trouble" 
-            className="h-32 mx-auto mb-8 float-animation"
+            className="h-40 mx-auto mb-10 float-animation"
           />
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-5xl font-bold text-gray-900 mb-6">
             Welcome to Bubble Trouble
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Join our unique social space where messages float like bubbles and
             conversations spark meaningful connections.
           </p>
         </div>
 
         {/* Features Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto mb-16">
           <div className="text-center">
             <MessageCircle className="feature-icon" />
             <h3 className="feature-title">Ephemeral Chats</h3>
@@ -56,17 +56,17 @@ export default function AuthPage() {
         {/* Auth Forms */}
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           <div className="auth-form">
-            <h2 className="text-2xl font-semibold mb-6">Sign In</h2>
+            <h2 className="text-2xl font-semibold mb-8">Login</h2>
             <LoginForm />
           </div>
 
           <div className="auth-form">
-            <h2 className="text-2xl font-semibold mb-6">Create Account</h2>
+            <h2 className="text-2xl font-semibold mb-8">Register</h2>
             <RegisterForm />
           </div>
         </div>
 
-        <footer className="mt-12 text-center text-sm text-gray-500">
+        <footer className="mt-16 text-center text-sm text-gray-500">
           <div className="flex justify-center space-x-4">
             <a href="#" className="hover:text-yellow-600 transition-colors">Privacy Policy</a>
             <span>•</span>

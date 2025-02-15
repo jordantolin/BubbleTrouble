@@ -1,9 +1,10 @@
 import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 
 export function Navbar() {
   const { user, logoutMutation } = useAuth();
+  const [location] = useLocation();
 
   return (
     <nav className="bubble-nav px-4 py-3">
@@ -23,14 +24,19 @@ export function Navbar() {
           {user ? (
             <>
               <Link href="/profile">
-                <a className="text-gray-600 hover:text-primary transition-colors">
+                <Button
+                  variant="ghost"
+                  className={`text-gray-600 hover:text-yellow-500 transition-colors ${
+                    location === "/profile" ? "text-yellow-500" : ""
+                  }`}
+                >
                   Profile
-                </a>
+                </Button>
               </Link>
               <Button
                 variant="ghost"
                 onClick={() => logoutMutation.mutate()}
-                className="text-gray-600 hover:text-primary transition-colors"
+                className="text-gray-600 hover:text-yellow-500 transition-colors"
                 disabled={logoutMutation.isPending}
               >
                 Logout
@@ -38,7 +44,9 @@ export function Navbar() {
             </>
           ) : (
             <Link href="/auth">
-              <a className="bubble-button px-6 py-2">Sign In</a>
+              <Button className="bubble-button px-6 py-2">
+                Sign In
+              </Button>
             </Link>
           )}
         </div>
