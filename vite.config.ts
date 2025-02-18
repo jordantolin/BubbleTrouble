@@ -8,6 +8,16 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 export default defineConfig({
+  server: {
+    port: 5173,
+    strictPort: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+      },
+    },
+  },
   plugins: [react(), runtimeErrorOverlay(), themePlugin()],
   resolve: {
     alias: {

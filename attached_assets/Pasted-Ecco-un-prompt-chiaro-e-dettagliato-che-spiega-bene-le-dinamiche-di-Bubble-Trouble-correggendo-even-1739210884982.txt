@@ -1,0 +1,42 @@
+Ecco un prompt chiaro e dettagliato che spiega bene le dinamiche di Bubble Trouble, correggendo eventuali errori e rendendo l’idea più strutturata:
+
+Prompt per lo sviluppo di Bubble Trouble – Un Social Network Alternativo
+
+Crea Bubble Trouble, un social network progettato per ridurre la pressione sociale, eliminare la dipendenza dagli algoritmi e promuovere interazioni più autentiche e spontanee. La piattaforma deve essere innovativa, minimalista e basata su bolle tematiche in un’interfaccia gialla e dinamica.
+
+1. Concetto principale
+
+Bubble Trouble non ha like, follower o commenti pubblici. Le interazioni avvengono in “bolle”, spazi temporanei dove le persone possono condividere pensieri, immagini o brevi video senza lasciare tracce permanenti. L’obiettivo è incentivare l’autenticità senza l’ansia delle performance sociali.
+
+2. Funzionamento delle Bolle
+ • Ogni utente può creare una bolla o entrare in una esistente.
+ • Le bolle hanno una durata limitata e si dissolvono automaticamente dopo un periodo casuale (da 1 a 24 ore).
+ • Dentro ogni bolla, i partecipanti possono condividere messaggi, immagini e audio in modo anonimo o con il proprio nome.
+ • Non ci sono like o condivisioni: l’unico modo per interagire è con risposte private o reazioni animate senza numeri o statistiche.
+
+3. Interazioni Alternative
+ • “Sussurri” (Risposte Effimere): Ogni messaggio può ricevere risposte private che scompaiono dopo essere state lette.
+ • “Riflessi” (Reazioni non numeriche): Al posto dei like, gli utenti possono reagire con effetti grafici animati (es. una bolla che si espande o vibra), senza creare una competizione di popolarità.
+ • “Sfumature” (Anonimato Parziale): Ogni utente può scegliere se il proprio nome viene rivelato dopo un certo numero di interazioni nella stessa bolla.
+
+4. Meccaniche di Sicurezza e Benessere
+ • Zero Algoritmi di Manipolazione: Nessun feed personalizzato basato su engagement. L’utente esplora bolle in base ai propri interessi.
+ • Contenuti Privati: Le bolle non vengono indicizzate, né archiviate. Ogni interazione è temporanea e protetta.
+ • Moderazione Comunitaria: Gli utenti possono segnalare contenuti inappropriati, ma senza possibilità di abuso del sistema.
+
+5. Tecnologia Consigliata
+ • Frontend: React con un’interfaccia fluida e dinamica, basata su animazioni di bolle.
+ • Backend: Django/Flask con WebSockets per la comunicazione in tempo reale.
+ • Database: PostgreSQL per la gestione delle bolle e degli utenti.
+ • Autenticazione: Sistema sicuro con email o numero di telefono, supportando profili anonimi.
+ • Hosting: Docker + Replit per un ambiente scalabile e facilmente testabile.
+
+6. Esperienza Utente e Design
+ • Palette Gialla: Il colore principale deve essere il giallo, con sfumature e ombre per un effetto tridimensionale.
+ • Bolle in Movimento: Gli elementi UI devono avere una fluidità naturale, con transizioni morbide e animazioni di dissolvenza.
+ • Immagini Strategiche: Inserisci immagini illustrative per spiegare il funzionamento delle bolle, oltre a icone e sfondi che rafforzino il tema visivo.
+
+Obiettivo del progetto:
+Creare un social network innovativo che rompa con le dinamiche tossiche delle piattaforme tradizionali, offrendo un ambiente più rilassato e spontaneo. Il design e le interazioni devono favorire un’esperienza positiva e libera da ansia sociale.
+
+Questo prompt dovrebbe garantire una comprensione chiara delle dinamiche di Bubble Trouble e indirizzare lo sviluppo in modo efficace!

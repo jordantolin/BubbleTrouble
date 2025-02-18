@@ -6,9 +6,11 @@ import session from "express-session";
 import { storage } from "./storage";
 
 type WebSocketMessage = {
-  type: "new_bubble" | "bubble_liked" | "new_comment";
+  type: "new_bubble" | "bubble_liked" | "new_comment" | "new_message";
   bubble?: BubbleWithUser;
   comment?: Comment;
+  message?: any;
+  bubbleId?: number;
 };
 
 export function handleWebSocket(ws: WebSocket, request: IncomingMessage) {
@@ -40,6 +42,15 @@ export function handleWebSocket(ws: WebSocket, request: IncomingMessage) {
         case "bubble_liked":
           if (message.bubble) {
             broadcast({ type: "bubble_liked", bubble: message.bubble });
+          }
+          break;
+        case "new_message":
+          if (message.message && message.bubbleId) {
+            broadcast({ 
+              type: "new_message", 
+              message: message.message,
+              bubbleId: message.bubbleId 
+            });
           }
           break;
       }

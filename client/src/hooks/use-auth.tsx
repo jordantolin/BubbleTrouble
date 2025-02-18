@@ -38,6 +38,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     },
     onSuccess: (user: SelectUser) => {
       queryClient.setQueryData(["/api/user"], user);
+      queryClient.invalidateQueries({ queryKey: ["/api/user"] });
+      window.location.href = "/";
     },
     onError: (error: Error) => {
       toast({
@@ -55,6 +57,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     },
     onSuccess: (user: SelectUser) => {
       queryClient.setQueryData(["/api/user"], user);
+      queryClient.invalidateQueries({ queryKey: ["/api/user"] });
+      window.location.href = "/";
     },
     onError: (error: Error) => {
       toast({

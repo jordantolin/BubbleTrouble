@@ -11,6 +11,11 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       colors: {
+        bubble: {
+          yellow: '#FFD700',  // Golden Yellow (Primary)
+          dark: '#2A2A2A',    // Dark Contrast
+          cream: '#FFF3B0',   // Cream Highlight
+        },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
